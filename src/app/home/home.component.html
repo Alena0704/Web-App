@@ -1,0 +1,41 @@
+<div class='content'>
+  <p class="h2">Задания и лекции </p>
+
+
+  <div class='filter'>
+    <div class="btn-group">
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">ОТУ</a>
+        <a class="dropdown-item" href="#">ДМ</a>
+        <a class="dropdown-item" href="#">Все</a>
+      </div>
+    </div>
+
+    <div class="btn-group" style="margin-left: 10px;">
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Лекция</a>
+        <a class="dropdown-item" href="#">Семинар</a>
+        <a class="dropdown-item" href="#">Тесты</a>
+        <a class="dropdown-item" href="#">Задания</a>
+        <a class="dropdown-item" href="#">Все</a>
+      </div>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+    <tr class="thead-dark">
+      <th *ngFor="let column of columns">
+        {{column}}
+      </th>
+    </tr>
+    </thead>
+
+    <tr *ngFor="let row of suk">
+      <td *ngFor="let column of columns">
+        {{row[column]}}
+      </td>
+    </tr>
+
+  </table>
+</div>
+
