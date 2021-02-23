@@ -11,7 +11,6 @@ import {AdminSubjectsComponent} from './admin/admin-subjects/admin-subjects.comp
 import {NavbarComponent} from './navbar/navbar.component';
 import {HomeComponent} from './home/home.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
