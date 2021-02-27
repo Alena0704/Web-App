@@ -1,2 +1,14 @@
-<app-navbar></app-navbar>
+
+<div #login *ngIf="getLogStatus(); then logged else unlogged"></div>
+
+
+<ng-template #unlogged>
+  <app-login (logStatus)="setLogStatus($event)"></app-login>
+</ng-template>
+
+<ng-template #logged>
+  <app-navbar></app-navbar>
+</ng-template>
+
+
 <router-outlet></router-outlet>

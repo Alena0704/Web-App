@@ -7,5 +7,15 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'al';
+
+  title = 'Chikadrilo';
+
+ private logStatus: boolean = false;
+
+  getLogStatus():boolean{
+    return this.logStatus;
+  }
+  setLogStatus($event:boolean){
+    this.logStatus = $event;
+  }
 }
