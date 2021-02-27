@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "1f3560ea-ad84-4153-899c-0730c998517d"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -55,8 +58,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             }
@@ -127,8 +130,5 @@
       }
     }
   },
-  "defaultProject": "al",
-  "cli": {
-    "analytics": "0b64087a-e7a1-4072-839e-7162b47ce3e3"
-  }
+  "defaultProject": "al"
 }
