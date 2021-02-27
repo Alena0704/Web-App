@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {LoginStatusService} from './login-status.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,12 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
+  constructor(private logStatus: LoginStatusService) {
+  }
+
   title = 'Chikadrilo';
 
- private logStatus: boolean = false;
-
-  getLogStatus():boolean{
-    return this.logStatus;
-  }
-  setLogStatus($event:boolean){
-    this.logStatus = $event;
+  getLogStatus(): boolean {
+    return this.logStatus.getLogStatus();
   }
 }

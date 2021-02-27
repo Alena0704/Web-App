@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { TouchSequence } from 'selenium-webdriver';
+import { LoginStatusService } from '../login-status.service';
 
 @Component({
   selector: 'app-login',
@@ -7,20 +9,17 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logStatus: LoginStatusService) { }
 
   ngOnInit(): void {
   }
 
   login: string = '';
   password: string = '';
-  log:boolean = false;
-  @Output() logStatus = new EventEmitter<boolean>();
 
   logIn(){
     //server-logic
-    this.log = !this.log;
-    this.logStatus.emit(this.log);
+    this.logStatus.setLogStatus(true);
   }
 
 

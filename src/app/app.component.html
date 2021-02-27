@@ -1,9 +1,7 @@
+<div *ngIf="getLogStatus(); then logged else unLogged"></div>
 
-<div #login *ngIf="getLogStatus(); then logged else unlogged"></div>
-
-
-<ng-template #unlogged>
-  <app-login (logStatus)="setLogStatus($event)"></app-login>
+<ng-template #unLogged>
+  <app-login></app-login>
 </ng-template>
 
 <ng-template #logged>
