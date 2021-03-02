@@ -1,41 +1,68 @@
-<div class='content'>
-  <p class="h2">Задания и лекции </p>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="workTitle">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Название Работы </th>
+    <td mat-cell *matCellDef="let element"> {{element.workTitle}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="endDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Дата сдачи </th>
+    <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="classType">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Тип </th>
+    <td mat-cell *matCellDef="let element"> {{element.classType}} </td>
+  </ng-container>
 
 
-  <div class='filter'>
-    <div class="btn-group">
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">ОТУ</a>
-        <a class="dropdown-item" href="#">ДМ</a>
-        <a class="dropdown-item" href="#">Все</a>
-      </div>
-    </div>
+  <ng-container matColumnDef="studyLink">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Просмотр </th>
+    <td mat-cell *matCellDef="let element"> {{element.studyLink}} </td>
+  </ng-container>
 
-    <div class="btn-group" style="margin-left: 10px;">
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Лекция</a>
-        <a class="dropdown-item" href="#">Семинар</a>
-        <a class="dropdown-item" href="#">Тесты</a>
-        <a class="dropdown-item" href="#">Задания</a>
-        <a class="dropdown-item" href="#">Все</a>
-      </div>
-    </div>
-  </div>
-  <table class="table table-striped">
-    <thead class="thead-dark">
-    <tr class="thead-dark">
-      <th *ngFor="let column of columns">
-        {{column}}
-      </th>
-    </tr>
-    </thead>
 
-    <tr *ngFor="let row of suk">
-      <td *ngFor="let column of columns">
-        {{row[column]}}
-      </td>
-    </tr>
 
-  </table>
-</div>
 
+  <ng-container matColumnDef="result">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Результат </th>
+    <td mat-cell *matCellDef="let element"> {{element.result}} </td>
+  </ng-container>
+
+
+
+
+  <ng-container matColumnDef="source_">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Источники </th>
+    <td mat-cell *matCellDef="let element"> {{element.source_}} </td>
+  </ng-container>
+
+
+
+
+
+  <ng-container matColumnDef="recommends">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Рекомендации </th>
+    <td mat-cell *matCellDef="let element"> {{element.recommends}} </td>
+  </ng-container>
+
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

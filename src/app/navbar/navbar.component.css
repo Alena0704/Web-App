@@ -1,10 +1,15 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
-#navbarchanger{
-  top:-8px;
+#navBar{
+  top:0px;
   bottom: 0px;
+  width: 100%;
 }
 #logOut{
   position: absolute;
   right: 50px;
+}
+#icon {
+  width: 50px;
+  height: 50px;
 }
