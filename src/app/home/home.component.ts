@@ -77,7 +77,7 @@ const ELEMENT_DATA: ProjectData[] = [
   },
   {
     id: 7,
-    workTitle: 'ВСКРОЮСЬ',
+    workTitle: 'ВСКРОЮ',
     endDate: 'EPTODAY',
     classType: 'lecture',
     studyLink: 'https://achika.herokuapp.com/',
