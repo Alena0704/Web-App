@@ -15,6 +15,7 @@ import {DemoMaterialModule} from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
+import {FormComponent} from './form/form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     LoginComponent,
     AdminSubjectsComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    FormComponent
   ],
   imports: [
     RouterModule.forRoot([
@@ -31,7 +33,8 @@ import {MatNativeDateModule} from '@angular/material/core';
       {path: 'login', component: LoginComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'navbar', component: NavbarComponent},
-      {path: 'admin-subjects', component: AdminSubjectsComponent}
+      {path: 'admin-subjects', component: AdminSubjectsComponent},
+      {path: 'form', component: FormComponent}
     ]),
     BrowserModule,
     BrowserAnimationsModule,
@@ -41,7 +44,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatNativeDateModule,
     ReactiveFormsModule
   ],
-  providers: [ { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }, ],
+  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

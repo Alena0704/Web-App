@@ -1,24 +1,23 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { TouchSequence } from 'selenium-webdriver';
-import { LoginStatusService } from '../login-status.service';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {TouchSequence} from 'selenium-webdriver';
+import {LoginStatusService} from '../login-status.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private logStatus: LoginStatusService) { }
-
-  ngOnInit(): void {
+  constructor(private logStatus: LoginStatusService) {
+    this.login = '';
+    this.password = '';
   }
 
-  login: string = '';
-  password: string = '';
-
-  logIn(){
-    //server-logic
+  login: string;
+  password: string;
+  logIn(): void {
+    // server-logic
     this.logStatus.setLogStatus(true);
   }
 
