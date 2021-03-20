@@ -2,17 +2,8 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {ProjectData} from '../Interfaces/project-data';
 
-export interface ProjectData {
-  id: number;
-  workTitle: string;
-  endDate: string;
-  classType: string;
-  studyLink: string;
-  result: string;
-  source_: string;
-  recommends: string;
-}
 
 const ELEMENT_DATA: ProjectData[] = [
   {

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {TouchSequence} from 'selenium-webdriver';
-import {LoginStatusService} from '../login-status.service';
+import {LoginStatusService} from '../services/login-status/login-status.service';
 
 @Component({
   selector: 'app-login',
