@@ -8,13 +8,23 @@ import {IProjectData} from '../../Interfaces/i-project-data';
 })
 export class ProjectDataService {
 
-  private url = '';
+  private url = '/api/data';
+  private data: any;
 
   constructor(private http: HttpClient) {
   }
 
-  getProjectData(): Observable<IProjectData[]> {
-  return this.http.get<IProjectData[]>(this.url);
+  getObserveData(): Observable<IProjectData[]> {
+    return this.http.get<IProjectData[]>(this.url);
+  }
+
+  getData(): IProjectData[] {
+    return this.data;
+  }
+
+  setProjectData(): void {
+    this.getObserveData()
+      .subscribe(data => this.data = data);
   }
 
 }

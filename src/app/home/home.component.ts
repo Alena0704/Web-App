@@ -1,93 +1,10 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {IProjectData} from '../Interfaces/i-project-data';
+import {HttpClient} from '@angular/common/http';
+import {ProjectDataService} from '../services/project data/project-data.service';
 
-/*
-const ELEMENT_DATA: IProjectData[] = [
-  {
-    id: 1,
-    workTitle: 'Я',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '1Pizdec',
-    source_: 'source',
-    recommends: '3'
-  },
-  {
-    id: 2,
-    workTitle: 'СЕЙЧАС',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '2Pizdec',
-    source_: 'source',
-    recommends: '4'
-  },
-  {
-    id: 3,
-    workTitle: 'ВЫПИЛЮСЬ',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '3Pizdec',
-    source_: 'source',
-    recommends: '5'
-  },
-  {
-    id: 4,
-    workTitle: 'А',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '4Pizdec',
-    source_: 'source',
-    recommends: '2'
-  },
-  {
-    id: 5,
-    workTitle: 'НЕТ',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '5Pizdec',
-    source_: 'source',
-    recommends: '1'
-  },
-  {
-    id: 6,
-    workTitle: 'Я',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '6Pizdec',
-    source_: 'source',
-    recommends: '0'
-  },
-  {
-    id: 7,
-    workTitle: 'ВСКРОЮ',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '7Pizdec',
-    source_: 'source',
-    recommends: '6'
-  },
-  {
-    id: 8,
-    workTitle: 'Чикадрило',
-    endDate: 'Тупой',
-    classType: 'Бездарный',
-    studyLink: 'Хуесос',
-    result: 'И',
-    source_: 'Гнилой',
-    recommends: 'Аутист'
-  }
-];
-*/
 
 @Component({
   selector: 'app-home',
@@ -95,16 +12,14 @@ const ELEMENT_DATA: IProjectData[] = [
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements AfterViewInit {
-  constructor() {
+
+  constructor(private http: HttpClient, private serviceData: ProjectDataService) {
   }
 
-  ELEMENT_DATA: IProjectData[] = [];
   displayedColumns: string[] = ['id', 'workTitle', 'endDate', 'classType', 'studyLink', 'result', 'source_', 'recommends'];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
+  dataSource = new MatTableDataSource(this.serviceData.getData()); // getting data from ProjectDataService
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -120,6 +35,7 @@ export class HomeComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 
 }
 
