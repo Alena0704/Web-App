@@ -2,10 +2,10 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {ProjectData} from '../Interfaces/project-data';
+import {IProjectData} from '../Interfaces/i-project-data';
 
-
-const ELEMENT_DATA: ProjectData[] = [
+/*
+const ELEMENT_DATA: IProjectData[] = [
   {
     id: 1,
     workTitle: 'Я',
@@ -87,7 +87,7 @@ const ELEMENT_DATA: ProjectData[] = [
     recommends: 'Аутист'
   }
 ];
-
+*/
 
 @Component({
   selector: 'app-home',
@@ -96,11 +96,11 @@ const ELEMENT_DATA: ProjectData[] = [
 })
 export class HomeComponent implements AfterViewInit {
   constructor() {
-
   }
 
+  ELEMENT_DATA: IProjectData[] = [];
   displayedColumns: string[] = ['id', 'workTitle', 'endDate', 'classType', 'studyLink', 'result', 'source_', 'recommends'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
