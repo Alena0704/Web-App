@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class LoginStatusService {
 
-  private logStatus = false;
+  private logStatus = true;
 
   getLogStatus(): boolean {
     return this.logStatus;

@@ -16,6 +16,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
 import {FormComponent} from './form/form.component';
+import {ErrorComponent} from './error/error.component';
+import {TableComponent} from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -25,16 +27,20 @@ import {FormComponent} from './form/form.component';
     AdminSubjectsComponent,
     NavbarComponent,
     HomeComponent,
-    FormComponent
+    FormComponent,
+    ErrorComponent,
+    TableComponent
   ],
   imports: [
     RouterModule.forRoot([
-      {path: 'home', component: HomeComponent},
+      {path: '', component: HomeComponent},
       {path: 'login', component: LoginComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'navbar', component: NavbarComponent},
       {path: 'admin-subjects', component: AdminSubjectsComponent},
-      {path: 'form', component: FormComponent}
+      {path: 'form', component: FormComponent},
+      {path: 'table', component: TableComponent},
+      {path: '**', component: ErrorComponent}
     ]),
     BrowserModule,
     BrowserAnimationsModule,

@@ -18,10 +18,7 @@ export class LoginComponent {
   password: string;
 
   logIn(): void {
-
     this.logStatus.setLogStatus(true);
-    this.subData.setProjectData(); // loading data from server side
+    // this.subData.setProjectData(); // loading data from server side
   }
-
-
 }
