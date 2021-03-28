@@ -38,27 +38,10 @@ export class FormComponent {
   ];
   fileToUpload: any = null;
 
-
-  fileName = '';
-
-  onFileSelected(event: any): void {
-
-    const file: File = event.target.files[0];
-
-    if (file) {
-
-      this.fileName = file.name;
-
-      const formData = new FormData();
-
-      formData.append('thumbnail', file);
-
-      this.http.put('http://localhost:8080/api/upload', formData)
-        .subscribe(data => {
-          console.log(data);
-        });
-      // upload$.subscribe();
-    }
+  upload(): void {
+    this.http.post('/api/upload', 'hello')
+      .subscribe(data => {
+        console.log(data);
+      });
   }
-
 }

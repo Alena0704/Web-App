@@ -108,11 +108,13 @@ const ELEMENT_DATA = [
   }
 ];
 
- /*
-app.get('/api/upload', (req, res) => {
- res.send("OH HELLO THERE")
+
+app.post('/api/upload', (req, res) => {
+ // res.send("OH HELLO THERE")
+  //res.redirect('/');
+  console.log("server: " + req.body);
 })
- */
+
 
 app.get('/api/data', (req, res) => {
   res.send(ELEMENT_DATA);
