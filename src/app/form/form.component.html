@@ -25,6 +25,21 @@
       </mat-select>
     </mat-form-field>
     <br>
+    <input type="file" class="file-input"
+           (change)="onFileSelected($event)" #fileUpload>
+    <br>
+    <div class="file-upload">
+      {{fileName || "Файл не загружен."}}
+    <br>
+      <button mat-raised-button color="primary" class="upload-btn"
+              (click)="fileUpload.click()">
+       Прикрепить файл
+      </button>
+    </div>
+
+    <br>
+    <br>
     <input class="btn btn-primary" type="submit" value="Submit">
   </form>
+
 </form>

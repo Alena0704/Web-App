@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 interface FileType {
   type: string;
@@ -15,7 +16,7 @@ interface Subject {
 })
 export class FormComponent {
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.selectedType = 'not selected';
     this.selectedSubject = 'not selected';
   }
@@ -35,5 +36,29 @@ export class FormComponent {
     {title: 'КТАДС'},
     {title: 'ТОАУ'}
   ];
+  fileToUpload: any = null;
+
+
+  fileName = '';
+
+  onFileSelected(event: any): void {
+
+    const file: File = event.target.files[0];
+
+    if (file) {
+
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('thumbnail', file);
+
+      this.http.put('http://localhost:8080/api/upload', formData)
+        .subscribe(data => {
+          console.log(data);
+        });
+      // upload$.subscribe();
+    }
+  }
 
 }
