@@ -1,5 +1,6 @@
 import {Component, EventEmitter} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 interface FileType {
   type: string;
@@ -36,22 +37,27 @@ export class FormComponent {
     {title: 'КТАДС'},
     {title: 'ТОАУ'}
   ];
-  fileToUpload: any = null;
 
+  fileToUpload: any = null;
 
   upload(): void {
     const nameFromId = document.getElementById('taskName') as HTMLInputElement;
     this.taskName = nameFromId.value;
-    console.log('entered task name: ' + this.taskName);
+
     const testData = [
-      {task: this.taskName},
-      {selectedType: this.selectedType},
-      {selectedSubject: this.selectedSubject}
+      {
+        task: this.taskName,
+        selectedType: this.selectedType,
+        selectedSubject: this.selectedSubject
+      }
     ];
-    this.http.post<any>('http://localhost:8080/api/upload', JSON.stringify(testData))
-      .subscribe(data => {
-        data = testData;
-        console.log('front:' + data);
-      });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    this.http.post('/api/upload', testData, httpOptions)
+      .subscribe();
   }
 }

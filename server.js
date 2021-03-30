@@ -1,10 +1,9 @@
 //Install express server
 const express = require('express');
 const path = require('path');
-const http = require('http');
 const app = express();
 const port = 8080;
-
+const bodyParser = require('body-parser');
 
 /*
 const mysql = require('mysql');
@@ -108,15 +107,30 @@ const ELEMENT_DATA = [
   }
 ];
 
-app.use(express.urlencoded({
+
+app.use(bodyParser.urlencoded({
   extended: true
-}))
-
-
+}));
+app.use(bodyParser.json());
 
 
 app.get('/api/data', (req, res) => {
   res.send(ELEMENT_DATA);
+})
+
+
+
+
+app.post('/api/upload', (req, res) => {
+  let task = req.body.task;
+  let selectedType = req.body.selectedType;
+  let selectedSubject = req.body.selectedSubject;
+
+  console.log("task: " + task);
+  console.log("type: " + selectedType);
+  console.log("subject: " + selectedSubject);
+  console.log("server: " + JSON.stringify(req.body));
+  res.end("yes");
 })
 
 
@@ -127,13 +141,6 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/al/index.html'));
 });
 
-
-app.post('/api/upload', (req, res) => {
-  // res.send("OH HELLO THERE")
-  //res.redirect('/');
-  console.log("server: " + req.body);
-  res.end();
-})
 
 
 // Start the app by listening on the default Heroku port
