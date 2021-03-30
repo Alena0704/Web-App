@@ -17,14 +17,14 @@ interface Subject {
 export class FormComponent {
 
   constructor(private http: HttpClient) {
+    this.taskName = 'not named';
     this.selectedType = 'not selected';
     this.selectedSubject = 'not selected';
   }
 
   selectedType: string;
   selectedSubject: string;
-
-
+  taskName: string;
   fileTypes: FileType[] = [
     {type: 'Лекция'},
     {type: 'Семинар'},
@@ -38,10 +38,20 @@ export class FormComponent {
   ];
   fileToUpload: any = null;
 
+
   upload(): void {
-    this.http.post('/api/upload', 'hello')
+    const nameFromId = document.getElementById('taskName') as HTMLInputElement;
+    this.taskName = nameFromId.value;
+    console.log('entered task name: ' + this.taskName);
+    const testData = [
+      {task: this.taskName},
+      {selectedType: this.selectedType},
+      {selectedSubject: this.selectedSubject}
+    ];
+    this.http.post<any>('http://localhost:8080/api/upload', JSON.stringify(testData))
       .subscribe(data => {
-        console.log(data);
+        data = testData;
+        console.log('front:' + data);
       });
   }
 }

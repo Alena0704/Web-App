@@ -108,12 +108,11 @@ const ELEMENT_DATA = [
   }
 ];
 
+app.use(express.urlencoded({
+  extended: true
+}))
 
-app.post('/api/upload', (req, res) => {
- // res.send("OH HELLO THERE")
-  //res.redirect('/');
-  console.log("server: " + req.body);
-})
+
 
 
 app.get('/api/data', (req, res) => {
@@ -127,6 +126,14 @@ app.get('/*', function (req, res) {
 
   res.sendFile(path.join(__dirname + '/dist/al/index.html'));
 });
+
+
+app.post('/api/upload', (req, res) => {
+  // res.send("OH HELLO THERE")
+  //res.redirect('/');
+  console.log("server: " + req.body);
+  res.end();
+})
 
 
 // Start the app by listening on the default Heroku port
