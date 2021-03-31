@@ -1,14 +1,27 @@
 import {Component, EventEmitter} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
 
-interface FileType {
+
+interface Subject {
+  name: string;
+}
+
+interface SubjectType {
   type: string;
 }
 
-interface Subject {
-  title: string;
+interface TaskType {
+  task: string;
 }
+
+
+interface FormData {
+  title: string;
+  type: string;
+  task: string;
+  subName: string;
+}
+
 
 @Component({
   selector: 'app-form',
@@ -21,36 +34,44 @@ export class FormComponent {
     this.taskName = 'not named';
     this.selectedType = 'not selected';
     this.selectedSubject = 'not selected';
+    this.selectedTask = 'not selected';
   }
 
-  selectedType: string;
-  selectedSubject: string;
-  taskName: string;
-  fileTypes: FileType[] = [
+  taskName: string; // название предмета
+  selectedType: string; // Тип предмета
+  selectedTask: string; // Тип задания
+  selectedSubject: string; // Название предмета
+
+
+  subjectType: SubjectType[] = [
     {type: 'Лекция'},
-    {type: 'Семинар'},
-    {type: 'Тест'},
-    {type: 'Задание'}
+    {type: 'Семинар'}
+  ];
+
+  taskType: TaskType[] = [
+    {task: 'Тест'},
+    {task: 'Задание'}
   ];
 
   subjects: Subject[] = [
-    {title: 'КТАДС'},
-    {title: 'ТОАУ'}
+    {name: 'КТАДС'},
+    {name: 'ТОАУ'}
   ];
 
   fileToUpload: any = null;
 
   upload(): void {
     const nameFromId = document.getElementById('taskName') as HTMLInputElement;
-    this.taskName = nameFromId.value;
-
-    const testData = [
+    this.taskName = nameFromId.value.toString();
+    const testData: FormData =
       {
-        task: this.taskName,
-        selectedType: this.selectedType,
-        selectedSubject: this.selectedSubject
-      }
-    ];
+        title: this.taskName,
+        type: this.selectedType,
+        task: this.selectedTask,
+        subName: this.selectedSubject
+      };
+
+    console.log('selected data (json stringify): \n' + JSON.stringify(testData));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

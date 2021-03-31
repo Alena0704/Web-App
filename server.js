@@ -122,13 +122,16 @@ app.get('/api/data', (req, res) => {
 
 
 app.post('/api/upload', (req, res) => {
+  let title = req.body.title;
+  let type = req.body.type;
   let task = req.body.task;
-  let selectedType = req.body.selectedType;
-  let selectedSubject = req.body.selectedSubject;
+  let subName = req.body.subName;
 
+  console.log("title: " + title);
+  console.log("type: " + type);
   console.log("task: " + task);
-  console.log("type: " + selectedType);
-  console.log("subject: " + selectedSubject);
+  console.log("subName: " + subName);
+
   console.log("server: " + JSON.stringify(req.body));
   res.end("yes");
 })
