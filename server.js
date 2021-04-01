@@ -5,23 +5,17 @@ const app = express();
 const port = 8080;
 const bodyParser = require('body-parser');
 
-/*
+
 const mysql = require('mysql');
 
-const dbConnect = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'us-cdbr-east-03.cleardb.com',
   user: 'b0a4da6ce0854d',
   password: 'fd5828d2',
-  database:'heroku_21e880135017970',
-  port:'3306'
+  database: 'heroku_21e880135017970',
+  port: '3306'
 });
 
-
-dbConnect.connect(function(err){
-if (err) throw err;
-console.log("Database connected!!!!!");
-});
-*/
 
 // Serve only the static files form the dist directory
 const ELEMENT_DATA = [
@@ -60,6 +54,24 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
+
+app.get('/api/test', (req, res) => {
+  const cmd = 'select disciplins.name, materials.name, materials.type, tasks.name,t1.mark\n' +
+    'from tasks, materials, disciplins,\n' +
+    '(select tasks.id_task, avg(results.mark) as mark\n' +
+    'from tasks, results\n' +
+    'where tasks.id_task=results.id_task\n' +
+    'group by tasks.id_task) as t1\n' +
+    'where disciplins.id_disc=materials.id_disc and\n' +
+    'materials.id_material=tasks.id_material and t1.id_task=tasks.id_task;'
+
+  const data = pool.query(cmd, (err, rows, fields) => {
+    if (err) throw err;
+  //  console.log(rows[0]);
+    res.send(rows);
+  })
+})
 
 
 app.get('/api/data', (req, res) => {
