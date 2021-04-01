@@ -119,21 +119,21 @@ app.get('/api/data', (req, res) => {
 })
 
 
-
-
 app.post('/api/upload', (req, res) => {
-  let title = req.body.title;
-  let type = req.body.type;
-  let task = req.body.task;
-  let subName = req.body.subName;
+  let subject = req.body.subject;
+  let matType = req.body.matType;
+  let taskTitle = req.body.taskTitle;
+  let taskType = req.body.taskType;
+  let comment = req.body.comment;
 
-  console.log("title: " + title);
-  console.log("type: " + type);
-  console.log("task: " + task);
-  console.log("subName: " + subName);
+  console.log("subject: " + subject);
+  console.log("matType: " + matType);
+  console.log("taskTitle: " + taskTitle);
+  console.log("taskType: " + taskType);
+  console.log("comment: " + comment);
 
-  console.log("server: " + JSON.stringify(req.body));
-  res.end("yes");
+  console.log("server (not json): " + JSON.stringify(req.body));
+  res.end();
 })
 
 
@@ -143,7 +143,6 @@ app.get('/*', function (req, res) {
 
   res.sendFile(path.join(__dirname + '/dist/al/index.html'));
 });
-
 
 
 // Start the app by listening on the default Heroku port

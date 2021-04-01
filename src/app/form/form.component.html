@@ -1,39 +1,48 @@
 <form class="example-form" method="post">
-  <mat-form-field class="example-full-width">
-    <mat-label>Название задания</mat-label>
-    <label>
-      <input type="text" id="taskName" matInput placeholder="Название" required/>
-    </label>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Тип предмета</mat-label>
-    <mat-select [(ngModel)]="selectedType" name="subjectType">
-      <mat-option *ngFor="let subType of subjectType" [value]="subType.type">
-        {{subType.type}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Тип задания</mat-label>
-    <mat-select [(ngModel)]="selectedTask" name="subjectType">
-      <mat-option *ngFor="let taskType of taskType" [value]="taskType.task">
-        {{taskType.task}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
+
   <mat-form-field appearance="fill">
     <mat-label>Название предмета</mat-label>
-    <mat-select [(ngModel)]="selectedSubject" name="subject">
+    <mat-select [(ngModel)]="formData.subject" name="subName">
       <mat-option *ngFor="let subject of subjects" [value]="subject.name">
         {{subject.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-icon svgIcon="plus-circle" aria-hidden="false" aria-label="Constructor" ></mat-icon>
   <br>
- <!-- <input class="btn btn-primary" type="submit" value="Submit" (click)="upload()"/>
-  -->
+
+  <mat-form-field appearance="fill">
+    <mat-label>Материал</mat-label>
+    <mat-select [(ngModel)]="formData.matType" name="matType">
+      <mat-option *ngFor="let matType of matTypes" [value]="matType.type">
+        {{matType.type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Название задания</mat-label>
+    <label>
+      <input type="text" id="taskTitle" matInput placeholder="Название" required/>
+    </label>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Тип задания</mat-label>
+    <mat-select [(ngModel)]="formData.taskType" name="taskType">
+      <mat-option *ngFor="let taskType of taskTypes" [value]="taskType.task">
+        {{taskType.task}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!-- ВСТАВКА БЛЯТЬ СЮДА -->
+  <!-- <input class="btn btn-primary" type="submit" value="Submit" (click)="upload()"/>
+   -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Leave a comment</mat-label>
+    <textarea id="comment" matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+
 </form>
-<button class = "btn btn-primary" (click)="upload()"></button>
+<button class="btn btn-primary" (click)="upload()">Отправить</button>
