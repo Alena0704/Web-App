@@ -56,8 +56,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-app.get('/api/test', (req, res) => {
-  const cmd = 'select disciplins.name, materials.name, materials.type, tasks.name,t1.mark\n' +
+
+
+app.get('/api/data', (req, res) => {
+  const cmd = 'select disciplins.subject as subject, materials.name as material, materials.type as matType, tasks.name as task,t1.mark as avgScore\n' +
     'from tasks, materials, disciplins,\n' +
     '(select tasks.id_task, avg(results.mark) as mark\n' +
     'from tasks, results\n' +
@@ -68,14 +70,8 @@ app.get('/api/test', (req, res) => {
 
   const data = pool.query(cmd, (err, rows, fields) => {
     if (err) throw err;
-  //  console.log(rows[0]);
     res.send(rows);
   })
-})
-
-
-app.get('/api/data', (req, res) => {
-  res.send(ELEMENT_DATA);
 })
 
 
@@ -86,6 +82,7 @@ app.post('/api/upload', (req, res) => {
   let taskType = req.body.taskType;
   let comment = req.body.comment;
 
+  /*
   console.log("subject: " + subject);
   console.log("matType: " + matType);
   console.log("taskTitle: " + taskTitle);
@@ -93,6 +90,8 @@ app.post('/api/upload', (req, res) => {
   console.log("comment: " + comment);
 
   console.log("server: " + JSON.stringify(req.body));
+  */
+
   res.end();
 })
 
