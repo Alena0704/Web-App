@@ -26,85 +26,33 @@ console.log("Database connected!!!!!");
 // Serve only the static files form the dist directory
 const ELEMENT_DATA = [
   {
-    id: 1,
-    workTitle: 'Я',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '1Pizdec',
-    source_: 'source',
-    recommends: '3'
+    subject: 'Предмет 1',
+    material: 'Материал 1',
+    matType: 'Тип материала 1',
+    task: 'Задание 1',
+    avgScore: '4.2'
   },
   {
-    id: 2,
-    workTitle: 'СЕЙЧАС',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '2Pizdec',
-    source_: 'source',
-    recommends: '4'
+    subject: 'Предмет 2',
+    material: 'Материал 2',
+    matType: 'Тип материала 2',
+    task: 'Задание 2',
+    avgScore: '4.1'
   },
   {
-    id: 3,
-    workTitle: 'ВЫПИЛЮСЬ',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '3Pizdec',
-    source_: 'source',
-    recommends: '5'
+    subject: 'Предмет 3',
+    material: 'Материал 3',
+    matType: 'Тип материала 3',
+    task: 'Задание 3',
+    avgScore: '4.5'
   },
   {
-    id: 4,
-    workTitle: 'А',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '4Pizdec',
-    source_: 'source',
-    recommends: '2'
+    subject: 'Предмет 4',
+    material: 'Материал 4',
+    matType: 'Тип материала 4',
+    task: 'Задание 4',
+    avgScore: '4.9'
   },
-  {
-    id: 5,
-    workTitle: 'НЕТ',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '5Pizdec',
-    source_: 'source',
-    recommends: '1'
-  },
-  {
-    id: 6,
-    workTitle: 'Я',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '6Pizdec',
-    source_: 'source',
-    recommends: '0'
-  },
-  {
-    id: 7,
-    workTitle: 'ВСКРОЮ',
-    endDate: 'EPTODAY',
-    classType: 'lecture',
-    studyLink: 'https://achika.herokuapp.com/',
-    result: '7Pizdec',
-    source_: 'source',
-    recommends: '6'
-  },
-  {
-    id: 8,
-    workTitle: 'Чикадрило',
-    endDate: 'Тупой',
-    classType: 'Бездарный',
-    studyLink: 'Хуесос',
-    result: 'И',
-    source_: 'Гнилой',
-    recommends: 'Аутист'
-  }
 ];
 
 
@@ -132,7 +80,7 @@ app.post('/api/upload', (req, res) => {
   console.log("taskType: " + taskType);
   console.log("comment: " + comment);
 
-  console.log("server (not json): " + JSON.stringify(req.body));
+  console.log("server: " + JSON.stringify(req.body));
   res.end();
 })
 

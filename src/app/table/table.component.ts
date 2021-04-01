@@ -16,7 +16,7 @@ export class TableComponent implements AfterViewInit {
   constructor(private http: HttpClient, private serviceData: ProjectDataService) {
   }
 
-  displayedColumns: string[] = ['id', 'workTitle', 'endDate', 'classType', 'studyLink', 'result', 'source_', 'recommends'];
+  displayedColumns: string[] = ['subject', 'material', 'matType', 'task', 'avgScore'];
   dataSource = new MatTableDataSource(this.serviceData.getData()); // getting data from ProjectDataService
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
