@@ -47,6 +47,12 @@ app.post('/api/upload', (req, res) => {
   let taskType = req.body.taskType;
   let comment = req.body.comment;
 
+  const cmd = 'select id_material from materials where type=' + matType
+
+  console.log("matType: " + matType);
+  pool.query(cmd, (err, rows, fields) => {
+    console.log(rows);
+  })
   /*
   console.log("subject: " + subject);
   console.log("matType: " + matType);
@@ -58,6 +64,12 @@ app.post('/api/upload', (req, res) => {
   */
 
   res.end();
+})
+
+
+app.get('/api/form-data', (req,res)=>{
+
+  res.send("test");
 })
 
 

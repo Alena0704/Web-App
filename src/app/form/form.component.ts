@@ -15,11 +15,11 @@ interface Subject {
   name: string;
 }
 
-interface SubjectType {
+interface MatType {
   type: string;
 }
 
-interface TaskType {
+interface SubType {
   task: string;
 }
 
@@ -32,12 +32,12 @@ interface FormData {
   comment: string;
 }
 
-
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
+
 export class FormComponent {
 
   constructor(private http: HttpClient, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
@@ -53,12 +53,12 @@ export class FormComponent {
 
   formData: FormData;
 
-  matTypes: SubjectType[] = [
+  matTypes: MatType[] = [
     {type: 'Лекция'},
     {type: 'Семинар'}
   ];
 
-  taskTypes: TaskType[] = [
+  taskTypes: SubType[] = [
     {task: 'Тест'},
     {task: 'Задание'}
   ];
