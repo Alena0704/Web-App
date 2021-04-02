@@ -17,45 +17,10 @@ const pool = mysql.createPool({
 });
 
 
-// Serve only the static files form the dist directory
-const ELEMENT_DATA = [
-  {
-    subject: 'Предмет 1',
-    material: 'Материал 1',
-    matType: 'Тип материала 1',
-    task: 'Задание 1',
-    avgScore: '4.2'
-  },
-  {
-    subject: 'Предмет 2',
-    material: 'Материал 2',
-    matType: 'Тип материала 2',
-    task: 'Задание 2',
-    avgScore: '4.1'
-  },
-  {
-    subject: 'Предмет 3',
-    material: 'Материал 3',
-    matType: 'Тип материала 3',
-    task: 'Задание 3',
-    avgScore: '4.5'
-  },
-  {
-    subject: 'Предмет 4',
-    material: 'Материал 4',
-    matType: 'Тип материала 4',
-    task: 'Задание 4',
-    avgScore: '4.9'
-  },
-];
-
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-
-
 
 
 app.get('/api/data', (req, res) => {
@@ -96,11 +61,11 @@ app.post('/api/upload', (req, res) => {
 })
 
 
-app.use(express.static(__dirname + '/dist/al'));
+app.use(express.static(__dirname + '../../dist/al'));
 
 app.get('/*', function (req, res) {
 
-  res.sendFile(path.join(__dirname + '/dist/al/index.html'));
+  res.sendFile(path.join(__dirname + '../../dist/al/index.html'));
 });
 
 
