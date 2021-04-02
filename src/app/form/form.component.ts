@@ -2,6 +2,8 @@ import {Component, EventEmitter} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
+import {FormDataService} from '../services/form data/form-data.service';
+import {IFormSubMat} from '../Interfaces/i-form-SubMat';
 
 
 const PLUS_ICON = `
@@ -40,7 +42,8 @@ interface FormData {
 
 export class FormComponent {
 
-  constructor(private http: HttpClient, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(private http: HttpClient, iconRegistry: MatIconRegistry,
+              private formDataService: FormDataService, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('plus-circle', sanitizer.bypassSecurityTrustHtml(PLUS_ICON));
     this.formData = {
       subject: '',
@@ -49,26 +52,41 @@ export class FormComponent {
       taskType: '',
       comment: ''
     };
+    formDataService.getObserveData().subscribe(data => this.subjectMaterial = data);
   }
 
   formData: FormData;
+  subjectMaterial: IFormSubMat[] = [];
 
-  matTypes: MatType[] = [
-    {type: 'Лекция'},
-    {type: 'Семинар'}
-  ];
-
-  taskTypes: SubType[] = [
-    {task: 'Тест'},
-    {task: 'Задание'}
-  ];
 
   subjects: Subject[] = [
     {name: 'КТАДС'},
     {name: 'ТОАУ'}
   ];
 
+  matTypes: MatType[] = [
+    {type: 'Лекция'},
+    {type: 'Семинар'}
+  ];
+
+
+  taskTypes: SubType[] = [
+    {task: 'Тест'},
+    {task: 'Задание'}
+  ];
+
+  filterUniqueSubjects(): IFormSubMat[] {
+    return this.subjectMaterial.filter(
+      (thing, i, arr) =>
+        arr.findIndex(t => t.subject === thing.subject) === i);
+  }
+
+  filterMatFromSub(item: string): IFormSubMat[] {
+    return this.subjectMaterial.filter(x => x.subject === item);
+  }
+
   upload(): void {
+    console.log(this.subjectMaterial);
     const nameFromId = document.getElementById('taskTitle') as HTMLInputElement;
     const commentFromId = document.getElementById('comment') as HTMLInputElement;
     this.formData.taskTitle = nameFromId.value.toString();
