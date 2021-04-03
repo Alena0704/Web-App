@@ -13,14 +13,6 @@ const PLUS_ICON = `
 </svg>
 `;
 
-interface Subject {
-  name: string;
-}
-
-interface MatType {
-  type: string;
-}
-
 interface SubType {
   task: string;
 }
@@ -57,17 +49,6 @@ export class FormComponent {
 
   formData: FormData;
   subjectMaterial: IFormSubMat[] = [];
-
-
-  subjects: Subject[] = [
-    {name: 'КТАДС'},
-    {name: 'ТОАУ'}
-  ];
-
-  matTypes: MatType[] = [
-    {type: 'Лекция'},
-    {type: 'Семинар'}
-  ];
 
 
   taskTypes: SubType[] = [
