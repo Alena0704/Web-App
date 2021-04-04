@@ -8,7 +8,7 @@ import {ITableData} from '../../Interfaces/i-table/i-table-data';
 })
 export class TableDataService {
 
-  private GET_URL = '/api/table-data';
+  private GET_URL = '/api/table/data';
 
   constructor(private http: HttpClient) {
   }

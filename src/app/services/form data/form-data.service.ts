@@ -20,8 +20,8 @@ export class FormDataService {
   }
 
   subjectTypes: IFormTaskType[] = []; // constant values (could be changed by getting them from DB)
-  private GET_URL = '/api/form-data';
-  private POST_URL = '/api/form-upload';
+  private GET_URL = '/api/form/data';
+  private POST_URL = '/api/form/upload';
 
   private httpOptions = {
     headers: new HttpHeaders({
