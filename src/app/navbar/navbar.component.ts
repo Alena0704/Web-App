@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginStatusService} from '../services/login-status/login-status.service';
-import {ProjectDataService} from '../services/project data/project-data.service';
+import {TableDataService} from '../services/project data/table-data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +9,7 @@ import {ProjectDataService} from '../services/project data/project-data.service'
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private logStatus: LoginStatusService, private subData: ProjectDataService) {
+  constructor(private logStatus: LoginStatusService, private subData: TableDataService) {
   }
 
   ngOnInit(): void {

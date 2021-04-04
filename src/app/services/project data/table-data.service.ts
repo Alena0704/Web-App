@@ -6,10 +6,10 @@ import {ITableData} from '../../Interfaces/i-table/i-table-data';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectDataService {
+export class TableDataService {
 
   private url = '/api/data';
-  private data: any;
+  private data: ITableData[] = [];
 
   constructor(private http: HttpClient) {
   }
@@ -17,14 +17,4 @@ export class ProjectDataService {
   getObserveData(): Observable<ITableData[]> {
     return this.http.get<ITableData[]>(this.url);
   }
-
-  getData(): ITableData[] {
-    return this.data;
-  }
-
-  setProjectData(): void {
-    this.getObserveData()
-      .subscribe(data => this.data = data);
-  }
-
 }

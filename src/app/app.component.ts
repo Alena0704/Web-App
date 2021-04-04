@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LoginStatusService} from './services/login-status/login-status.service';
-import {ProjectDataService} from './services/project data/project-data.service';
+import {TableDataService} from './services/project data/table-data.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -11,14 +11,11 @@ import {Subscription} from 'rxjs';
 
 export class AppComponent implements OnInit, OnDestroy {
 
-  constructor(private logStatus: LoginStatusService, private subData: ProjectDataService) {
-    // this.dataSubs
+  constructor(private logStatus: LoginStatusService) {
   }
 
-  // dataSubs: Subscription;
 
   ngOnInit(): void {
-    this.subData.setProjectData();
   }
 
   ngOnDestroy(): void {
