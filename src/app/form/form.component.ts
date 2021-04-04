@@ -6,6 +6,7 @@ import {FormDataService} from '../services/form data/form-data.service';
 import {IFormInput} from '../Interfaces/i-form/i-form-input';
 import {IFormData} from '../Interfaces/i-form/i-form-data';
 import {IFormTaskType} from '../Interfaces/i-form/i-form-task-type';
+import {Observable} from 'rxjs';
 
 
 const PLUS_ICON = `
@@ -24,16 +25,16 @@ const PLUS_ICON = `
 
 export class FormComponent {
 
+  selectedData: IFormData = {} as IFormData;
+  subMatOptions: IFormInput[] = []; // options to choose from (subjects,matTypes)
+  taskTypes: IFormTaskType[] = []; // fourth input
+
   constructor(private http: HttpClient, iconRegistry: MatIconRegistry,
               private formDataService: FormDataService, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('plus-circle', sanitizer.bypassSecurityTrustHtml(PLUS_ICON));
     formDataService.getObserveFormData().subscribe(data => this.subMatOptions = data);
     this.taskTypes = formDataService.getTaskTypes();
   }
-
-  selectedData: IFormData = {} as IFormData;
-  subMatOptions: IFormInput[] = []; // options to choose from (subjects,matTypes)
-  taskTypes: IFormTaskType[] = []; // fourth input
 
   filterUniqueSubjects(): IFormInput[] {
     return this.subMatOptions.filter(
@@ -46,20 +47,10 @@ export class FormComponent {
   }
 
   upload(): void {
-    console.log(this.subMatOptions);
     const nameFromId = document.getElementById('taskTitle') as HTMLInputElement;
     const commentFromId = document.getElementById('comment') as HTMLInputElement;
     this.selectedData.taskTitle = nameFromId.value.toString();
     this.selectedData.comment = commentFromId.value.toString();
-
-    console.log('selected data (json stringify): \n' + JSON.stringify(this.selectedData));
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-
-    this.http.post('/api/upload', this.selectedData, httpOptions)
-      .subscribe();
+    this.formDataService.postFormData(this.selectedData);
   }
 }

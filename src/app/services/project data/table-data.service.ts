@@ -8,12 +8,12 @@ import {ITableData} from '../../Interfaces/i-table/i-table-data';
 })
 export class TableDataService {
 
-  private url = '/api/data';
+  private GET_URL = '/api/table-data';
 
   constructor(private http: HttpClient) {
   }
 
   getObserveData(): Observable<ITableData[]> {
-    return this.http.get<ITableData[]>(this.url);
+    return this.http.get<ITableData[]>(this.GET_URL);
   }
 }

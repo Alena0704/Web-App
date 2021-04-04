@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-app.get('/api/data', (req, res) => {
+app.get('/api/table-data', (req, res) => {
   const cmd = 'select disciplins.subject as subject, materials.name as material, materials.type as matType, tasks.name as task,t1.mark as avgScore\n' +
     'from tasks, materials, disciplins,\n' +
     '(select tasks.id_task, avg(results.mark) as mark\n' +
@@ -40,7 +40,7 @@ app.get('/api/data', (req, res) => {
 })
 
 
-app.post('/api/upload', (req, res) => {
+app.post('/api/form-upload', (req, res) => {
   let subject = req.body.subject;
   let matType = req.body.matType;
   let taskTitle = req.body.taskTitle;
@@ -49,7 +49,7 @@ app.post('/api/upload', (req, res) => {
 
   const cmd = 'select id_material from materials where name=?'
   let insertion = [matType];
-  pool.query(mysql.format(cmd,insertion), (err, rows, fields) => {
+  pool.query(mysql.format(cmd, insertion), (err, rows, fields) => {
     console.log(JSON.stringify(rows));
   })
   /*
@@ -58,8 +58,10 @@ app.post('/api/upload', (req, res) => {
   console.log("taskTitle: " + taskTitle);
   console.log("taskType: " + taskType);
   console.log("comment: " + comment);
+  */
+
   console.log("server: " + JSON.stringify(req.body));
-*/
+
 
   res.end();
 })
