@@ -25,7 +25,6 @@ export class TableComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-
     this.serviceData.getObserveData()
       .subscribe(data => this.dataSource.data = data);
     this.dataLoaded = true; // We've loaded all data
@@ -34,7 +33,6 @@ export class TableComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
   }
 
   applyFilter(event: Event): void {

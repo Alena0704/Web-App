@@ -9,7 +9,6 @@ import {ITableData} from '../../Interfaces/i-table/i-table-data';
 export class TableDataService {
 
   private url = '/api/data';
-  private data: ITableData[] = [];
 
   constructor(private http: HttpClient) {
   }
