@@ -2,7 +2,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Название предмета</mat-label>
-    <mat-select [(ngModel)]="formData.subject" name="subName">
+    <mat-select [(ngModel)]="selectedData.subject" name="subName">
       <mat-option *ngFor="let subject of filterUniqueSubjects()" [value]="subject.subject">
         {{subject.subject}}
       </mat-option>
@@ -13,9 +13,9 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Материал</mat-label>
-    <mat-select [(ngModel)]="formData.matType" name="matType">
-      <mat-option *ngFor="let matType of filterMatFromSub(formData.subject)" [value]="matType.matType">
-        {{matType.matType}}
+    <mat-select [(ngModel)]="selectedData.matType" name="matType">
+      <mat-option *ngFor="let data of filterMatFromSub(selectedData.subject)" [value]="data.matType">
+        {{data.matType}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -29,9 +29,9 @@
   <br>
   <mat-form-field appearance="fill">
     <mat-label>Тип задания</mat-label>
-    <mat-select [(ngModel)]="formData.taskType" name="taskType">
-      <mat-option *ngFor="let taskType of taskTypes" [value]="taskType.task">
-       <div> {{taskType.task}} </div>
+    <mat-select [(ngModel)]="selectedData.taskType" name="taskType">
+      <mat-option *ngFor="let taskType of taskTypes" [value]="taskType.name">
+       <div> {{taskType.name}} </div>
       </mat-option>
     </mat-select>
   </mat-form-field>

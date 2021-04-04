@@ -3,7 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {FormDataService} from '../services/form data/form-data.service';
-import {IFormSubMat} from '../Interfaces/i-form-SubMat';
+import {IFormInput} from '../Interfaces/i-form/i-form-input';
+import {IFormData} from '../Interfaces/i-form/i-form-data';
+import {IFormTaskType} from '../Interfaces/i-form/i-form-task-type';
 
 
 const PLUS_ICON = `
@@ -13,18 +15,6 @@ const PLUS_ICON = `
 </svg>
 `;
 
-interface SubType {
-  task: string;
-}
-
-
-interface FormData {
-  subject: string;
-  matType: string;
-  taskTitle: string;
-  taskType: string;
-  comment: string;
-}
 
 @Component({
   selector: 'app-form',
@@ -37,51 +27,39 @@ export class FormComponent {
   constructor(private http: HttpClient, iconRegistry: MatIconRegistry,
               private formDataService: FormDataService, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIconLiteral('plus-circle', sanitizer.bypassSecurityTrustHtml(PLUS_ICON));
-    this.formData = {
-      subject: '',
-      matType: '',
-      taskTitle: '',
-      taskType: '',
-      comment: ''
-    };
-    formDataService.getObserveData().subscribe(data => this.subjectMaterial = data);
+    formDataService.getObserveFormData().subscribe(data => this.subMatOptions = data);
+    this.taskTypes = formDataService.getTaskTypes();
   }
 
-  formData: FormData;
-  subjectMaterial: IFormSubMat[] = [];
+  selectedData: IFormData = {} as IFormData;
+  subMatOptions: IFormInput[] = []; // options to choose from (subjects,matTypes)
+  taskTypes: IFormTaskType[] = []; // fourth input
 
-
-  taskTypes: SubType[] = [
-    {task: 'Тест'},
-    {task: 'Задание'}
-  ];
-
-  filterUniqueSubjects(): IFormSubMat[] {
-    return this.subjectMaterial.filter(
+  filterUniqueSubjects(): IFormInput[] {
+    return this.subMatOptions.filter(
       (thing, i, arr) =>
         arr.findIndex(t => t.subject === thing.subject) === i);
   }
 
-  filterMatFromSub(item: string): IFormSubMat[] {
-    return this.subjectMaterial.filter(x => x.subject === item);
+  filterMatFromSub(item: string): IFormInput[] {
+    return this.subMatOptions.filter(x => x.subject === item);
   }
 
   upload(): void {
-    console.log(this.subjectMaterial);
+    console.log(this.subMatOptions);
     const nameFromId = document.getElementById('taskTitle') as HTMLInputElement;
     const commentFromId = document.getElementById('comment') as HTMLInputElement;
-    this.formData.taskTitle = nameFromId.value.toString();
-    this.formData.comment = commentFromId.value.toString();
+    this.selectedData.taskTitle = nameFromId.value.toString();
+    this.selectedData.comment = commentFromId.value.toString();
 
-
-    console.log('selected data (json stringify): \n' + JSON.stringify(this.formData));
+    console.log('selected data (json stringify): \n' + JSON.stringify(this.selectedData));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       })
     };
 
-    this.http.post('/api/upload', this.formData, httpOptions)
+    this.http.post('/api/upload', this.selectedData, httpOptions)
       .subscribe();
   }
 }

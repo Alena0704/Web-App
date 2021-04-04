@@ -58,7 +58,6 @@ app.post('/api/upload', (req, res) => {
   console.log("taskTitle: " + taskTitle);
   console.log("taskType: " + taskType);
   console.log("comment: " + comment);
-
   console.log("server: " + JSON.stringify(req.body));
 */
 
@@ -90,12 +89,4 @@ app.get('/*', function (req, res) {
 app.listen(process.env.PORT || port);
 
 
-/*
-mysql://
-b0a4da6ce0854d
-:
-fd5828d2
-@
-us-cdbr-east-03.cleardb.com
-/heroku_21e880135017970?reconnect=true
-*/
+

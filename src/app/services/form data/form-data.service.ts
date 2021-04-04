@@ -1,33 +1,32 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IFormSubMat} from '../../Interfaces/i-form-SubMat';
+import {IFormInput} from '../../Interfaces/i-form/i-form-input';
+import {IFormTaskType} from '../../Interfaces/i-form/i-form-task-type';
 
 @Injectable({
   providedIn: 'root'
 })
 
-
-
 export class FormDataService {
 
-  private url = '/api/form-data';
-  private data: IFormSubMat[] = [];
-
   constructor(private http: HttpClient) {
+    this.subjectTypes = [
+      {name: 'Тест'},
+      {name: 'Задание'}
+    ];
   }
 
-  getObserveData(): Observable<IFormSubMat[]> {
-    return this.http.get<IFormSubMat[]>(this.url);
+  subjectTypes: IFormTaskType[] = []; // constant values (could be changed by getting them from DB)
+  private url = '/api/form-data';
+
+
+  getObserveFormData(): Observable<IFormInput[]> { // getting all subjects and matTypes
+    return this.http.get<IFormInput[]>(this.url);
   }
 
-  getData(): IFormSubMat[] {
-    return this.data;
-  }
-
-  uploadFormData(): void {
-    this.getObserveData()
-      .subscribe(data => this.data = data);
+  getTaskTypes(): IFormTaskType[] {
+    return this.subjectTypes;
   }
 
 

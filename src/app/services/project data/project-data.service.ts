@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IProjectData} from '../../Interfaces/i-project-data';
+import {ITableData} from '../../Interfaces/i-table/i-table-data';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,11 @@ export class ProjectDataService {
   constructor(private http: HttpClient) {
   }
 
-  getObserveData(): Observable<IProjectData[]> {
-    return this.http.get<IProjectData[]>(this.url);
+  getObserveData(): Observable<ITableData[]> {
+    return this.http.get<ITableData[]>(this.url);
   }
 
-  getData(): IProjectData[] {
+  getData(): ITableData[] {
     return this.data;
   }
 

@@ -1,4 +1,4 @@
-export interface IFormSubMat {
+export interface IFormInput {
   subject: string;
   matType: string;
 }

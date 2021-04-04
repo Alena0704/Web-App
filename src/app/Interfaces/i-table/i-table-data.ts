@@ -1,5 +1,5 @@
 /*
-export interface IProjectData {
+export interface ITableData {
 id: number;
 workTitle: string;
 endDate: string;
@@ -12,7 +12,7 @@ recommends: string;
 
 */
 
-export interface IProjectData {
+export interface ITableData {
   subject: string;
   material: string;
   matType: string;
