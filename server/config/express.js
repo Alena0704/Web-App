@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express();
 const bodyParser = require('body-parser');
-const tableRoutes = require('../routes/table')
-const navFormRoutes = require('../routes/navform')
-const homeRoutes = require('../routes/home')
+const tableRoutes = require('../routes/table.route')
+const navFormRoutes = require('../routes/navform.route')
+const homeRoutes = require('../routes/home.route')
 
 app.use(bodyParser.urlencoded({
   extended: true
