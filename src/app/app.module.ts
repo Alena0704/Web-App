@@ -4,10 +4,10 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {ProfileComponent} from './profile/profile.component';
-import {LoginComponent} from './login/login.component';
-import {AdminSubjectsComponent} from './admin/admin-subjects/admin-subjects.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './auth/login/login.component';
+import {AdminSubjectsComponent} from './admin/admin-table/admin-table.component';
+import {NavbarComponent} from './user/navbar/navbar.component';
+import {HomeComponent} from './user/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -15,9 +15,10 @@ import {DemoMaterialModule} from './material-module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
-import {FormComponent} from './form/form.component';
-import {ErrorComponent} from './error/error.component';
-import {TableComponent} from './table/table.component';
+import {FormComponent} from './admin/form/form.component';
+import {ErrorComponent} from './not-found/error.component';
+import {TableComponent} from './user/table/table.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {TableComponent} from './table/table.component';
     HomeComponent,
     FormComponent,
     ErrorComponent,
-    TableComponent
+    TableComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot([
@@ -37,7 +39,7 @@ import {TableComponent} from './table/table.component';
       {path: 'login', component: LoginComponent},
       {path: 'profile', component: ProfileComponent},
       {path: 'navbar', component: NavbarComponent},
-      {path: 'admin-subjects', component: AdminSubjectsComponent},
+      {path: 'admin-table', component: AdminSubjectsComponent},
       {path: 'form', component: FormComponent},
       {path: 'table', component: TableComponent},
       {path: '**', component: ErrorComponent}

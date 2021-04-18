@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginStatusService} from '../services/login-status/login-status.service';
-import {TableDataService} from '../services/project data/table-data.service';
+import {LoginStatusService} from '../../shared/services/login-status/login-status.service';
+import {TableDataService} from '../../shared/services/project data/table-data.service';
 
 @Component({
   selector: 'app-navbar',

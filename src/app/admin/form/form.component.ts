@@ -2,10 +2,10 @@ import {Component, EventEmitter} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
-import {FormDataService} from '../services/form data/form-data.service';
-import {IFormInput} from '../Interfaces/i-form/i-form-input';
-import {IFormData} from '../Interfaces/i-form/i-form-data';
-import {IFormTaskType} from '../Interfaces/i-form/i-form-task-type';
+import {FormDataService} from '../../shared/services/form data/form-data.service';
+import {IFormInput} from '../../shared/Interfaces/i-form/i-form-input';
+import {IFormData} from '../../shared/Interfaces/i-form/i-form-data';
+import {IFormTaskType} from '../../shared/Interfaces/i-form/i-form-task-type';
 import {Observable} from 'rxjs';
 
 

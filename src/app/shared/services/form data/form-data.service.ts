@@ -45,7 +45,7 @@ export class FormDataService {
   }
 
   errorHandler(error: HttpErrorResponse): any {
-    return Observable.throw(error.message || 'server error.');
+    return Observable.throw(error.message || 'server not-found.');
   }
 
 }
