@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "@angular/animations": "~11.1.2",
     "@angular/cdk": "^11.2.2",
     "@angular/cli": "^11.2.2",
