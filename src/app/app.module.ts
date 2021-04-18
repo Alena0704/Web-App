@@ -19,6 +19,9 @@ import {FormComponent} from './admin/form/form.component';
 import {ErrorComponent} from './not-found/error.component';
 import {TableComponent} from './user/table/table.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { MenuComponent } from './menu/menu.component';
+import {AuthGuard} from './auth/auth.guard';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -31,28 +34,20 @@ import { RegisterComponent } from './auth/register/register.component';
     FormComponent,
     ErrorComponent,
     TableComponent,
-    RegisterComponent
+    RegisterComponent,
+    MenuComponent
   ],
   imports: [
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'login', component: LoginComponent},
-      {path: 'profile', component: ProfileComponent},
-      {path: 'navbar', component: NavbarComponent},
-      {path: 'admin-table', component: AdminSubjectsComponent},
-      {path: 'form', component: FormComponent},
-      {path: 'table', component: TableComponent},
-      {path: '**', component: ErrorComponent}
-    ]),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     DemoMaterialModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
-  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}],
+  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
