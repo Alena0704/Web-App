@@ -3,7 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {HttpClient} from '@angular/common/http';
-import {TableDataService} from '../../shared/services/project data/table-data.service';
+import {TableDataService} from '../../shared/services/table data/table-data.service';
 import {ITableData} from '../../shared/Interfaces/i-table/i-table-data';
 
 
