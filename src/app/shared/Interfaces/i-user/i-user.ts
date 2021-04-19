@@ -5,7 +5,6 @@ export interface IUser {
   email: string;
   phoneNumber: string;
   address: string;
-  password: string;
   // social networks
   website: string;
   github: string;
