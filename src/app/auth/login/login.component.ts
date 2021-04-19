@@ -1,6 +1,8 @@
+import {ThrowStmt} from '@angular/compiler';
 import {Component} from '@angular/core';
+import {AuthService} from 'src/app/shared/services/auth/auth.service';
 import {LoginStatusService} from '../../shared/services/login-status/login-status.service';
-import {TableDataService} from '../../shared/services/project data/table-data.service';
+import {TableDataService} from '../../shared/services/table data/table-data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +11,17 @@ import {TableDataService} from '../../shared/services/project data/table-data.se
 })
 export class LoginComponent {
 
-  constructor(private logStatus: LoginStatusService, private subData: TableDataService) {
-    this.login = '';
+
+  constructor(private authService: AuthService) {
+    this.email = '';
     this.password = '';
+
   }
 
-  login: string;
+  email: string;
   password: string;
 
   logIn(): void {
-    this.logStatus.setLogStatus(true);
-    // this.subData.setProjectData(); // loading data from server side
+    // this.authService.LogIn(this.email, this.password);
   }
 }
