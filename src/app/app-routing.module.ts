@@ -10,8 +10,6 @@ import {FormComponent} from './admin/form/form.component';
 import {TableComponent} from './user/table/table.component';
 import {ErrorComponent} from './not-found/error.component';
 import {AuthGuard} from './auth/auth.guard';
-import {config} from 'rxjs';
-
 
 const routes: Routes = [
   {
