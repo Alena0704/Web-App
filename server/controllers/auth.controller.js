@@ -52,26 +52,32 @@ module.exports.register = async function (req, res) {
   }
 }
 
-let userEmail;
 
 module.exports.login = function (req, res) {
-
+  const userEmail = req.body.email;
+  const userPassword = req.body.password;
   const cmd = 'select password from students where email = ?';
 
-  const inserts = [req.body.email];
+  const inserts = [userEmail];
   pool.query(mysql.format(cmd, inserts), (err, rows, field) => {
     if (err) throw err
     if (rows.length === 0) {
-      return res.status(400).send("User doesn't exist");
+      return res.send({success: false, errorMessage: 'user does not exist'});
     }
-    bcrypt.compare(req.body.password, rows[0].password, function (err, result) {
+    bcrypt.compare(userPassword, rows[0].password, function (err, result) {
       if (err) throw err;
 
       if (result) {
-        userEmail = req.body.email
-        res.send("Success")
+        const cmd = 'select name, surname, patronymic, email, phoneNumber, registerDate,\n' +
+          'address, website, github, twitter, instagram, facebook from students where email = ?';
+        const inserts = [userEmail];
+
+        pool.query(mysql.format(cmd, inserts), (err, rows, field) => {
+          if (err) throw err
+          res.json({success: true, user: rows});
+        })
       } else {
-        return res.json({success: false, message: 'incorrect password'})
+        return res.send({success: false, errorMessage: 'incorrect password'}) //res.status(400).json....
       }
     })
   })
@@ -79,16 +85,18 @@ module.exports.login = function (req, res) {
 
 
 module.exports.user = function (req, res) {
+  /*
+    const cmd = 'select name, surname, patronymic, email, phoneNumber, registerDate,\n' +
+      'address, website, github, twitter, instagram, facebook from students where email = ?';
 
-  const cmd = 'select name, surname, patronymic, email, phoneNumber, registerDate,\n' +
-    'address, website, github, twitter, instagram, facebook from students where email = ?';
+    //console.log("User email after login: " + userEmail)
+    const inserts = [userEmail];
 
-  //console.log("User email after login: " + userEmail)
-  const inserts = [userEmail];
+    pool.query(mysql.format(cmd, inserts), (err, rows, field) => {
+      if (err) throw err
+      res.send(rows);
 
-  pool.query(mysql.format(cmd, inserts), (err, rows, field) => {
-    if (err) throw err
-    res.send(rows);
+    })
 
-  })
+   */
 }

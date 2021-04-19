@@ -1,11 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IUser} from '../../Interfaces/i-user/i-user';
 import {IUserLogin} from '../../Interfaces/i-user/i-user-login';
-import {pluck, tap} from 'rxjs/operators';
 import {IUserRegister} from '../../Interfaces/i-user/i-user-register';
 
+
+interface AuthResponse {
+  success: boolean;
+  user: IUser;
+  errorMessage?: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +22,44 @@ export class AuthService {
 
   private REGISTER_URL = '/api/auth/register';
   private LOG_URL = '/api/auth/login';
-  private USER_URL = '/api/user/data';
+
   private userLogin: IUserLogin = {} as IUserLogin;
-  private userData: IUser = {} as IUser;
+  private userData: IUser | undefined = {} as IUser;
+  private errorResponse: string | undefined;
+  private LoginStatus: boolean | undefined;
 
-  LogIn(email: string, password: string): Observable<IUserLogin> {
+  LogIn(email: string, password: string): Observable<HttpResponse<AuthResponse>> {
     this.userLogin = {email, password};
-    return this.http.post<IUserLogin>(this.LOG_URL, this.userLogin);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      observe: 'response' as const,
+      responseType: 'json' as const
+    };
+    return this.http.post<AuthResponse>(this.LOG_URL, this.userLogin, httpOptions);
   }
 
-  getUser(): Observable<IUser> {
-    return this.http.get<IUser>(this.USER_URL, );
+  setUser(user: HttpResponse<AuthResponse>): void {
+    this.LoginStatus = user.body?.success;
+    if (this.LoginStatus) {
+      this.userData = user.body?.user;
+      console.log('user data: \n' + JSON.stringify(this.userData));
+    } else {
+      this.errorResponse = user.body?.errorMessage;
+      this.LoginStatus = false; // in case we get undefined
+    }
   }
 
-  Register(userData: IUserRegister): Observable<IUserRegister> {
+  getLogStatus(): boolean | undefined {
+    return this.LoginStatus;
+  }
+
+  getErrorResponse(): string | undefined {
+    return this.errorResponse;
+  }
+
+  register(userData: IUserRegister): Observable<IUserRegister> {
     return this.http.post<IUserRegister>(this.REGISTER_URL, userData);
   }
 

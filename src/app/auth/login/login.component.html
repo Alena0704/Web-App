@@ -1,9 +1,14 @@
 <h1>Sign In Form</h1>
 <div id="wrapper">
-	<form id="signin" method="" action="" autocomplete="off">
-		<input type="text" id="user" name="user" placeholder="username" />
-		<input type="password" id="pass" name="pass" placeholder="password" />
-		<button type="submit">&#xf0da;</button>
-		<p>forgot your password? <a href="#">click here</a></p>
-	</form>
+  <form id="signin" autocomplete="off">
+    <input type="text" id="email" name="email" [(ngModel)]="email" placeholder="email"/>
+    <input type="password" id="password" name="password" [(ngModel)]="password" placeholder="password"/>
+    <button type="submit" (click)="logIn()">&#xf0da;</button>
+    <div>{{this.getLogMessage()}}</div>
+    <p>forgot your password? <a href="#">click here</a></p>
+  </form>
 </div>
+
+<ng-template>
+
+</ng-template>
