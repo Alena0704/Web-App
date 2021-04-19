@@ -14,4 +14,7 @@
     padding-right: 8px;
   }
 
-  #email_input{}
+  #email_input mat-form-field.mat-form-field
+  {
+    width: 308px;
+  }
