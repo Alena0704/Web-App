@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs';
 
 export class AppComponent implements OnInit, OnDestroy {
 
-  constructor(private logStatus: LoginStatusService) {
+  constructor() {
   }
 
 
@@ -24,7 +24,4 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'Chikadrilo';
 
-  getLogStatus(): boolean {
-    return this.logStatus.getLogStatus();
-  }
 }
