@@ -13,24 +13,24 @@ module.exports.register = async function (req, res) {
 
     res.status(201).send();
 
-
-    const user = {
-      name: req.body.name,
-      surname: req.body.surname,
-      patronymic: req.body.patronymic,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      registerDate: Date.now().toString(),
-      address: req.body.address,
-      password: hashedPassword,
-      //social networks
-      website: req.body.website,
-      github: req.body.github,
-      twitter: req.body.twitter,
-      instagram: req.body.instagram,
-      facebook: req.body.facebook
-    }
-
+    /*
+        const user = {
+          name: req.body.name,
+          surname: req.body.surname,
+          patronymic: req.body.patronymic,
+          email: req.body.email,
+          phoneNumber: req.body.phoneNumber,
+          registerDate: Date.now().toString(),
+          address: req.body.address,
+          password: hashedPassword,
+          //social networks
+          website: req.body.website,
+          github: req.body.github,
+          twitter: req.body.twitter,
+          instagram: req.body.instagram,
+          facebook: req.body.facebook
+        }
+    */
 
     const cmd = "INSERT INTO students (name,surname, patronymic, email, phoneNumber, registerDate,\n" +
       "address, password, website, github, twitter, instagram, facebook)\n" +

@@ -28,7 +28,7 @@ export class AuthService {
   private errorResponse: string | undefined;
   private LoginStatus: boolean | undefined;
 
-  LogIn(email: string, password: string): Observable<HttpResponse<AuthResponse>> {
+  LogIn(email: string, password: string): Promise<HttpResponse<AuthResponse>> {
     this.userLogin = {email, password};
     const httpOptions = {
       headers: new HttpHeaders({
@@ -37,14 +37,14 @@ export class AuthService {
       observe: 'response' as const,
       responseType: 'json' as const
     };
-    return this.http.post<AuthResponse>(this.LOG_URL, this.userLogin, httpOptions);
+    return this.http.post<AuthResponse>(this.LOG_URL, this.userLogin, httpOptions).toPromise();
   }
 
   setUser(user: HttpResponse<AuthResponse>): void {
     this.LoginStatus = user.body?.success;
     if (this.LoginStatus) {
       this.userData = user.body?.user;
-      console.log('user data: \n' + JSON.stringify(this.userData));
+     // console.log('user data: \n' + JSON.stringify(this.userData));
     } else {
       this.errorResponse = user.body?.errorMessage;
       this.LoginStatus = false; // in case we get undefined

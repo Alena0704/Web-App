@@ -19,20 +19,21 @@ export class LoginComponent {
   message: string | undefined;
 
   logIn(): void {
-  //  this.email = (document.getElementById('email') as HTMLInputElement).value.toString();
-  //  this.password = (document.getElementById('password') as HTMLInputElement).value.toString();
+
     this.authService.LogIn(this.email, this.password)
-      .subscribe(response => this.authService.setUser(response));
+      .then(data => {
+        this.authService.setUser(data);
+        this.message = this.getLogMessage();
+      });
     this.email = '';
     this.password = '';
-    // this.message = this.getLogMessage();
   }
 
   getLogMessage(): string | undefined {
     if (this.authService.getLogStatus()) {
       return 'Success!';
     } else {
-      console.log(this.authService.getErrorResponse()); // too many calls here
+     // console.log(this.authService.getErrorResponse()); // too many calls here
       return this.authService.getErrorResponse();
     }
   }
