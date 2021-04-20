@@ -1,10 +1,5 @@
-import {ThrowStmt} from '@angular/compiler';
 import {Component} from '@angular/core';
 import {AuthService} from 'src/app/shared/services/auth/auth.service';
-import {LoginStatusService} from '../../shared/services/login-status/login-status.service';
-import {TableDataService} from '../../shared/services/table data/table-data.service';
-import {HttpHeaders} from '@angular/common/http';
-import get = Reflect.get;
 
 @Component({
   selector: 'app-login',

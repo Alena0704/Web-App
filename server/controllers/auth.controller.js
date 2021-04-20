@@ -83,20 +83,3 @@ module.exports.login = function (req, res) {
   })
 }
 
-
-module.exports.user = function (req, res) {
-  /*
-    const cmd = 'select name, surname, patronymic, email, phoneNumber, registerDate,\n' +
-      'address, website, github, twitter, instagram, facebook from students where email = ?';
-
-    //console.log("User email after login: " + userEmail)
-    const inserts = [userEmail];
-
-    pool.query(mysql.format(cmd, inserts), (err, rows, field) => {
-      if (err) throw err
-      res.send(rows);
-
-    })
-
-   */
-}
