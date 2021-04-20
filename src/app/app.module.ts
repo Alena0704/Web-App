@@ -1,7 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
-import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './auth/login/login.component';
@@ -18,10 +16,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {FormComponent} from './admin/form/form.component';
 import {ErrorComponent} from './not-found/error.component';
 import {TableComponent} from './user/table/table.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { MenuComponent } from './menu/menu.component';
+import {RegisterComponent} from './auth/register/register.component';
+import {MenuComponent} from './menu/menu.component';
 import {AuthGuard} from './auth/auth.guard';
-import { AppRoutingModule } from './app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
+import {enableProdMode} from '@angular/core';
+
+enableProdMode();
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AppRoutingModule } from './app-routing.module';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)

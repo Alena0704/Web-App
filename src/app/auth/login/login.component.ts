@@ -10,7 +10,7 @@ export class LoginComponent {
 
 
   constructor(private authService: AuthService) {
-    this.email = 'test@gmail.com';
+    this.email = '';
     this.password = '';
   }
 
@@ -19,7 +19,7 @@ export class LoginComponent {
   message: string | undefined;
 
   logIn(): void {
-
+    this.message = '';
     this.authService.LogIn(this.email, this.password)
       .then(data => {
         this.authService.setUser(data);
@@ -33,7 +33,7 @@ export class LoginComponent {
     if (this.authService.getLogStatus()) {
       return 'Success!';
     } else {
-     // console.log(this.authService.getErrorResponse()); // too many calls here
+      // console.log(this.authService.getErrorResponse()); // too many calls here
       return this.authService.getErrorResponse();
     }
   }
