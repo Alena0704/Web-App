@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../shared/services/auth/auth.service';
+import {IUser} from '../shared/Interfaces/i-user/i-user';
+import {installTempPackage} from '@angular/cli/utilities/install-package';
 
 @Component({
   selector: 'app-profile',
@@ -8,24 +11,13 @@ import {Component, OnInit} from '@angular/core';
 export class ProfileComponent implements OnInit {
 
 
-  fullName = 'Billy Herrington'
-  job = 'Master'
-  email = 'spanking@gachi.muchi'
-  phone = '1312312312312'
-  mobile = '58923475104998'
-  address = 'deepDarkFantasies'
-  photo = './assets/aniki.png'
-
-
-  webSite = '...'
-  gitHub = '...'
-  twitter = '...'
-  instagram = '...'
-  facebook = '...'
-
-
-  constructor() {
+  constructor(private authService: AuthService) {
+    this.user = authService.getUserData();
   }
+
+  user: IUser = {} as IUser;
+  photo = './assets/aniki.png';
+
 
   ngOnInit(): void {
   }

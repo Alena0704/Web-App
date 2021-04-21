@@ -24,7 +24,7 @@ export class AuthService {
   private LOG_URL = '/api/auth/login';
 
   private userLogin: IUserLogin = {} as IUserLogin;
-  private userData: IUser | undefined = {} as IUser;
+  private userData: IUser = {} as IUser;
   private errorResponse: string | undefined;
   private LoginStatus: boolean | undefined;
 
@@ -43,12 +43,29 @@ export class AuthService {
   setUser(user: HttpResponse<AuthResponse>): void {
     this.LoginStatus = user.body?.success;
     if (this.LoginStatus) {
-      this.userData = user.body?.user;
-     // console.log('user data: \n' + JSON.stringify(this.userData));
+      this.userData = this.responseToIUser(user.body?.user);
     } else {
       this.errorResponse = user.body?.errorMessage;
-      this.LoginStatus = false; // in case we get undefined
+      this.LoginStatus = false; // in case we get undefined (which should not happen)
     }
+  }
+
+  responseToIUser(user: IUser | undefined): IUser {
+    const parsedJSON = JSON.parse(JSON.stringify(user));
+    const convertedUser: IUser = {
+      name: parsedJSON[0].name,
+      surname: parsedJSON[0].surname,
+      patronymic: parsedJSON[0].patronymic,
+      email: parsedJSON[0].email,
+      phoneNumber: parsedJSON[0].phoneNumber,
+      address: parsedJSON[0].address,
+      website: parsedJSON[0].website,
+      github: parsedJSON[0].github,
+      twitter: parsedJSON[0].twitter,
+      instagram: parsedJSON[0].instagram,
+      facebook: parsedJSON[0].facebook
+    };
+    return convertedUser;
   }
 
   getLogStatus(): boolean | undefined {
@@ -57,6 +74,10 @@ export class AuthService {
 
   getErrorResponse(): string | undefined {
     return this.errorResponse;
+  }
+
+  getUserData(): IUser {
+    return this.userData;
   }
 
   register(userData: IUserRegister): Observable<IUserRegister> {

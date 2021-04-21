@@ -16,14 +16,14 @@ export class LoginComponent {
 
   email: string;
   password: string;
-  message: string | undefined;
+  responseMessage: string | undefined;
 
   logIn(): void {
-    this.message = '';
+    this.responseMessage = '';
     this.authService.LogIn(this.email, this.password)
       .then(data => {
         this.authService.setUser(data);
-        this.message = this.getLogMessage();
+        this.responseMessage = this.getLogMessage();
       });
     this.email = '';
     this.password = '';
