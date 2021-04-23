@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from 'src/app/shared/services/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {AuthService} from 'src/app/shared/services/auth/auth.service';
 export class LoginComponent {
 
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private route: Router) {
     this.email = '';
     this.password = '';
   }
@@ -23,17 +24,20 @@ export class LoginComponent {
     this.authService.LogIn(this.email, this.password)
       .then(data => {
         this.authService.setUser(data);
+        this.email = '';
+        this.password = '';
+        if (this.authService.getLogStatus()) {
+          this.route.navigate(['/profile']);
+          return;
+        }
+        console.log('hello');
         this.responseMessage = this.getLogMessage();
       });
-    this.email = '';
-    this.password = '';
+
   }
 
   getLogMessage(): string | undefined {
-    if (this.authService.getLogStatus()) {
-      return 'Success!';
-    } else {
-      // console.log(this.authService.getErrorResponse()); // too many calls here
+    {
       return this.authService.getErrorResponse();
     }
   }

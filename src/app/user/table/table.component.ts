@@ -14,15 +14,16 @@ import {ITableData} from '../../shared/Interfaces/i-table/i-table-data';
 })
 export class TableComponent implements AfterViewInit, OnInit {
 
+  constructor(private http: HttpClient, private serviceData: TableDataService) {
+    this.dataLoaded = false; // We've not loaded the data yet
+  }
+
   dataLoaded: boolean;
   displayedColumns: string[] = ['subject', 'material', 'matType', 'task', 'avgScore'];
   dataSource = new MatTableDataSource<ITableData>(); // getting data from ProjectDataService
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor(private http: HttpClient, private serviceData: TableDataService) {
-    this.dataLoaded = false; // We've not loaded the data yet
-  }
 
   ngOnInit(): void {
     this.serviceData.getObserveData()
