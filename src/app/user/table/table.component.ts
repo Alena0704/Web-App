@@ -26,8 +26,10 @@ export class TableComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.serviceData.getObserveData()
-      .subscribe(data => this.dataSource.data = data);
-    this.dataLoaded = true; // We've loaded all data
+      .then(data => {
+        this.dataSource.data = data;
+        this.dataLoaded = true; // We've loaded all data
+      });
   }
 
   ngAfterViewInit(): void {

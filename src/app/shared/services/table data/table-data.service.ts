@@ -13,7 +13,7 @@ export class TableDataService {
   constructor(private http: HttpClient) {
   }
 
-  getObserveData(): Observable<ITableData[]> {
-    return this.http.get<ITableData[]>(this.GET_URL);
+  getObserveData(): Promise<ITableData[]> {
+    return this.http.get<ITableData[]>(this.GET_URL).toPromise();
   }
 }
