@@ -21,6 +21,8 @@ import {MenuComponent} from './menu/menu.component';
 import {AuthGuard} from './auth/auth.guard';
 import {AppRoutingModule} from './app-routing.module';
 import {enableProdMode} from '@angular/core';
+import { SubjectFormComponent } from './subject-form/subject-form.component';
+import { TestComponentComponent } from './test-component/test-component.component';
 
 enableProdMode();
 
@@ -36,7 +38,9 @@ enableProdMode();
     ErrorComponent,
     TableComponent,
     RegisterComponent,
-    MenuComponent
+    MenuComponent,
+    SubjectFormComponent,
+    TestComponentComponent
   ],
   imports: [
     BrowserModule,

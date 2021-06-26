@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {LoginStatusService} from './shared/services/login-status/login-status.service';
-import {TableDataService} from './shared/services/table data/table-data.service';
-import {Subscription} from 'rxjs';
+import {AuthService} from './shared/services/auth/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,17 +8,13 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent {
 
-  constructor() {
+  constructor(private auth: AuthService) {
   }
 
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-
+  getLogStatus(): boolean | undefined {
+    return this.auth.getLogStatus();
   }
 
   title = 'Chikadrilo';

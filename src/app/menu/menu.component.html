@@ -1,5 +1,6 @@
-<button mat-button [matMenuTriggerFor]="menu" id="menu_button">Профиль</button>
+<!--<button mat-button [matMenuTriggerFor]="menu" id="menu_button">Меню</button> -->
+<mat-icon id="menu_icon" svgIcon="menu-up" aria-hidden="false" [mat-menu-trigger-for]="menu" aria-label="Constructor"></mat-icon>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Log out</button>
-  <button mat-menu-item>Sign in</button>
+  <button mat-menu-item routerLink="/profile">Профиль</button>
+  <button mat-menu-item (click)="logOut()" routerLink="/login">Log out</button>
 </mat-menu>

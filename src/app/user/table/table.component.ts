@@ -26,7 +26,7 @@ export class TableComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit(): void {
-    this.serviceData.getObserveData()
+      this.serviceData.getObserveData()
       .then(data => {
         this.dataSource.data = data;
         this.dataLoaded = true; // We've loaded all data

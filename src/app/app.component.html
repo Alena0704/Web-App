@@ -9,5 +9,11 @@
   <app-navbar></app-navbar>
 </ng-template>
 -->
-<app-navbar></app-navbar>
+
+<div *ngIf="getLogStatus(); then logged"></div>
+<ng-template #logged>
+  <app-navbar></app-navbar>
+</ng-template>
+
+<app-test-component></app-test-component>
 <router-outlet></router-outlet>

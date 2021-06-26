@@ -26,7 +26,7 @@ export class AuthService {
   private userLogin: IUserLogin = {} as IUserLogin;
   private userData: IUser = {} as IUser;
   private errorResponse: string | undefined;
-  private LoginStatus: boolean | undefined;
+  private loginStatus: boolean | undefined;
 
   LogIn(email: string, password: string): Promise<HttpResponse<AuthResponse>> {
     this.userLogin = {email, password};
@@ -41,12 +41,12 @@ export class AuthService {
   }
 
   setUser(user: HttpResponse<AuthResponse>): void {
-    this.LoginStatus = user.body?.success;
-    if (this.LoginStatus) {
+    this.loginStatus = user.body?.success;
+    if (this.loginStatus) {
       this.userData = this.responseToIUser(user.body?.user);
     } else {
       this.errorResponse = user.body?.errorMessage;
-      this.LoginStatus = false; // in case we get undefined (which should not happen)
+      this.loginStatus = false; // in case we get undefined (which should not happen)
     }
   }
 
@@ -69,7 +69,11 @@ export class AuthService {
   }
 
   getLogStatus(): boolean | undefined {
-    return this.LoginStatus;
+    return this.loginStatus;
+  }
+
+  changeLogStatus(): void {
+    this.loginStatus = !this.loginStatus;
   }
 
   getErrorResponse(): string | undefined {

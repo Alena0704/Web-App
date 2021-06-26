@@ -13,27 +13,34 @@ export class LoginComponent {
   constructor(private authService: AuthService, private route: Router) {
     this.email = '';
     this.password = '';
+    this.logFunctionStatus = false;
   }
 
+  logFunctionStatus: boolean;
   email: string;
   password: string;
   responseMessage: string | undefined;
 
   logIn(): void {
+    this.logFunctionStatus = true;
     this.responseMessage = '';
     this.authService.LogIn(this.email, this.password)
       .then(data => {
         this.authService.setUser(data);
-        this.email = '';
-        this.password = '';
+        this.cleanInput();
+        this.logFunctionStatus = false;
         if (this.authService.getLogStatus()) {
           this.route.navigate(['/profile']);
           return;
         }
-        console.log('hello');
         this.responseMessage = this.getLogMessage();
       });
 
+  }
+
+  cleanInput(): void {
+    this.email = '';
+    this.password = '';
   }
 
   getLogMessage(): string | undefined {

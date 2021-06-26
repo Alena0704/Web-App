@@ -10,6 +10,7 @@ import {FormComponent} from './admin/form/form.component';
 import {TableComponent} from './user/table/table.component';
 import {ErrorComponent} from './not-found/error.component';
 import {AuthGuard} from './auth/auth.guard';
+import {SubjectFormComponent} from './subject-form/subject-form.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'form',
     component: FormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'subject-form',
+    component: SubjectFormComponent,
     canActivate: [AuthGuard]
   },
   {
