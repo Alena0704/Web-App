@@ -22,7 +22,10 @@ import {AuthGuard} from './auth/auth.guard';
 import {AppRoutingModule} from './app-routing.module';
 import {enableProdMode} from '@angular/core';
 import { SubjectFormComponent } from './subject-form/subject-form.component';
-import { TestComponentComponent } from './test-component/test-component.component';
+import { ConstrFuncRespComponent } from './constr-func-resp/constr-func-resp.component';
+import { IStudentDataComponent } from './i-student-data/i-student-data.component';
+import { TestingComponent } from './testing/testing.component';
+import { ConstructorTestComponent } from './constructor-test/constructor-test.component';
 
 enableProdMode();
 
@@ -40,7 +43,10 @@ enableProdMode();
     RegisterComponent,
     MenuComponent,
     SubjectFormComponent,
-    TestComponentComponent
+    ConstrFuncRespComponent,
+    IStudentDataComponent,
+    TestingComponent,
+    ConstructorTestComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +59,7 @@ enableProdMode();
     AppRoutingModule
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}, AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, ConstructorTestComponent]
 })
 export class AppModule {
 

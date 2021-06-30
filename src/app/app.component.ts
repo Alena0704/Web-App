@@ -17,6 +17,6 @@ export class AppComponent {
     return this.auth.getLogStatus();
   }
 
-  title = 'Chikadrilo';
+  title = 'System knoledges control';
 
 }
